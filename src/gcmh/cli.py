@@ -1,28 +1,48 @@
 import pyperclip
+import sys
 
 
-prompt = (
-    "### 指示"
-    "以下の作業内容に関しての英語のコミットメッセージを作成してください．\n"
-    "出力形式は，以下の形式で出力してください．\n"
-    "git add [file_name]\\n\n"
-    "git commit -m [message]"
-    "\n\n### 作業内容\n"
+PROMPT_TEMPLATE = (
+    "### Instruction\n"
+    "Create an English git commit message based on the following task description.\n"
+    "Please follow the Conventional Commits format (e.g., feat, fix, docs, style, refactor, chore).\n\n"
+    "Output Format:\n"
+    "git add [file_name]\n"
+    "git commit -m \"[message]\"\n\n"
+    "### Task Description\n"
     "{user_input}"
 )
 
-def main():
-    print(">> 作業内容を入力してください：")
-    user_input = ""
-    while not user_input:
-        user_input = input()
-        user_input = user_input.rstrip()
-        if not user_input:
-            print(">> 作業内容を入力してください：（空文字や空白のみは不可）")
+def get_user_input():
+    """ユーザーからの入力を受け取る関数"""
+    print(">> 作業内容を入力してください（終了するには Ctrl+C）：")
+    
+    while True:
+        try:
+            user_input = input("Input: ").strip()
+            if user_input:
+                return user_input
+            print(">> 作業内容が空です。もう一度入力してください。")
+        except KeyboardInterrupt:
+            print("\n>> プログラムを終了します。")
+            sys.exit(0)
 
-    message = prompt.format(user_input=user_input)
-    pyperclip.copy(message)
-    print(f">> プロンプトをクリップボードにコピーしました．")
+def main():
+    user_input = get_user_input()
+
+    message = PROMPT_TEMPLATE.format(user_input=user_input)
+
+    try:
+        pyperclip.copy(message)
+        print("-" * 30)
+        print(">> 成功: プロンプトをクリップボードにコピーしました！")
+        print(">> チャットAI（ChatGPTやClaudeなど）に貼り付けてください。")
+        print("-" * 30)
+        print(f"(コピーされた内容のプレビュー):\n{message[:100]}...")
+    except pyperclip.PyperclipException:
+        print(">> エラー: クリップボードへのコピーに失敗しました。")
+        print(">> 以下の内容を手動でコピーしてください：")
+        print(message)
 
 
 if __name__ == "__main__":
