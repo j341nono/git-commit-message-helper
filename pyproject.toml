@@ -1,7 +1,7 @@
 [project]
 name = "gcmh"
 version = "0.1.0"
-description = "Add your description here"
+description = "A CLI tool that generates AI-ready prompts for Git commit messages or Pull Request descriptions, and copies them to the clipboard."
 readme = "README.md"
 authors = [
     { name = "j341nono", email = "kanakana.nono1224@gmail.com" }
