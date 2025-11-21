@@ -35,7 +35,7 @@ def parse_args():
     
     parser.add_argument(
         'message', 
-        nargs='?', 
+        nargs='*', 
         help='Task description (if omitted, interactive mode starts)'
     )
     
@@ -65,7 +65,7 @@ def main():
     args = parse_args()
 
     if args.message:
-        user_input = args.message
+        user_input = " ".join(args.message)
     else:
         mode_str = "Pull Request" if args.pr else "Commit Message"
         print(f"[{mode_str} Mode]")
@@ -84,7 +84,7 @@ def main():
         print(f">> 成功: {mode_name}をクリップボードにコピーしました！")
         print(">> チャットAI（ChatGPTやClaudeなど）に貼り付けてください。")
         print("-" * 30)
-        preview = '\n'.join(prompt.split('\n')[:4])
+        preview = '\n'.join(prompt.split('\n')[:10]) 
         print(f"(Preview):\n{preview}...\n")
         
     except pyperclip.PyperclipException:
