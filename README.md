@@ -2,6 +2,8 @@
 
 生成AI を活用して，Git のコミットメッセージや Pull Request の文章を簡単に生成するためのツールです
 
+![Usage Demo](assets/usage.gif)
+
 ## 特徴
 
 - 日本語の作業内容から英語のコミットメッセージを生成
