@@ -8,7 +8,6 @@ TEMPLATE_COMMIT = (
     "Create an English git commit message based on the following task description.\n"
     "Please follow the Conventional Commits format (e.g., feat, fix, docs, style, refactor, chore).\n\n"
     "Output Format:\n"
-    "git add [file_name]\n"
     "git commit -m \"[message]\"\n\n"
     "### Task Description\n"
     "{user_input}"
