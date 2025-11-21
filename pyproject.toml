@@ -12,7 +12,7 @@ dependencies = [
 ]
 
 [project.scripts]
-gcmh = "gcmh:main"
+gcmh = "gcmh.cli:main"
 
 [build-system]
 requires = ["hatchling"]
