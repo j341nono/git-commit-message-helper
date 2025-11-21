@@ -1,0 +1,19 @@
+[project]
+name = "gcmh"
+version = "0.1.0"
+description = "A CLI tool that generates AI-ready prompts for Git commit messages or Pull Request descriptions, and copies them to the clipboard."
+readme = "README.md"
+authors = [
+    { name = "j341nono", email = "kanakana.nono1224@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "pyperclip>=1.11.0",
+]
+
+[project.scripts]
+gcmh = "gcmh.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
