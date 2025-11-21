@@ -49,7 +49,6 @@ uv tool install -e .
 
 ### コミットメッセージの生成
 
-**対話モード：**
 ```bash
 gcmh
 ```
@@ -70,7 +69,6 @@ git commit -m "[message]"
 
 ### Pull Request の生成
 
-**対話モード：**
 ```bash
 gcmh --pr
 ```
