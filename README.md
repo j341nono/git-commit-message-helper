@@ -1,16 +1,28 @@
 # Git Commit Message Helper
 
-生成AI を活用して，Git のコミットメッセージや Pull Request の文章を簡単に生成するためのツールです
+生成AI用のプロンプトを自動生成するツールです．日本語の作業内容を入力すると，Git のコミットメッセージや Pull Request 用の英語プロンプトを生成し，クリップボードにコピーします．
 
 ![Usage Demo](assets/usage.gif)
 
 ## 特徴
 
-- 日本語の作業内容から英語のコミットメッセージを生成
-- Pull Request のタイトルと説明文も生成可能
+- 日本語の作業内容から，生成AI用の英語プロンプトを自動生成
+- コミットメッセージ用・Pull Request 用の2種類のプロンプトに対応
 - 生成したプロンプトを自動的にクリップボードにコピー
-- Conventional Commits 形式に対応
-- ChatGPT や Claude などの AI チャットに貼り付けるだけで使用可能
+- Conventional Commits 形式を指定したプロンプト
+- ChatGPT や Claude などにそのまま貼り付けて使用可能
+
+## このツールができること
+
+このツールは**プロンプト生成ツール**です：
+
+✅ 日本語の作業内容 → 英語の指示が含まれたプロンプトを生成  
+✅ 生成したプロンプトをクリップボードにコピー  
+
+❌ このツール自体がコミットメッセージを生成するわけではありません  
+❌ AI 機能は含まれていません  
+
+生成されたプロンプトを ChatGPT や Claude などの生成AI に貼り付けることで，適切なコミットメッセージや PR 文を作成できます．
 
 ## インストール
 
@@ -47,13 +59,13 @@ uv tool install -e .
 
 ## 使い方
 
-### コミットメッセージの生成
+### コミットメッセージ用プロンプトの生成
 
 ```bash
 gcmh
 ```
 
-生成されるプロンプト例：
+**出力されるプロンプトの例：**
 ```
 ### Instruction
 Create an English git commit message based on the following task description.
@@ -67,13 +79,15 @@ git commit -m "[message]"
 ユーザー認証機能を追加した
 ```
 
-### Pull Request の生成
+このプロンプトを ChatGPT や Claude に貼り付けると，AI が英語のコミットメッセージを生成します．
+
+### Pull Request 用プロンプトの生成
 
 ```bash
 gcmh --pr
 ```
 
-生成されるプロンプト例：
+**出力されるプロンプトの例：**
 ```
 ### Instruction
 Create a Pull Request (PR) title and description in English based on the following task description.
@@ -90,11 +104,13 @@ Output Format:
 APIのレート制限機能を実装した
 ```
 
+このプロンプトを ChatGPT や Claude に貼り付けると，AI が英語の PR タイトルと説明文を生成します．
+
 ## ワークフロー
 
-1. ツールを実行して作業内容を入力
+1. `gcmh` コマンドを実行して作業内容を日本語で入力
 2. 生成されたプロンプトが自動的にクリップボードにコピーされる
-3. ChatGPT，Claude などの AI チャットに貼り付け
+3. ChatGPT，Claude などの生成AI に貼り付け
 4. AI が生成した英語のコミットメッセージや PR 文を使用
 
 ## オプション
@@ -105,6 +121,20 @@ APIのレート制限機能を実装した
 | `--pr` | Pull Request 用のプロンプトを生成 |
 | `-h, --help` | ヘルプを表示 |
 
+## トラブルシューティング
+
+### クリップボードへのコピーが失敗する
+
+Linux では以下のいずれかをインストールしてください：
+```bash
+# Debian/Ubuntu
+sudo apt-get install xclip
+
+# または
+sudo apt-get install xsel
+```
+
+macOS と Windows では追加のインストールは不要です．
 
 ## ライセンス
 
